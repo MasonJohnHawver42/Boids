@@ -1,13 +1,14 @@
-import numpy as np
-import cv2
+from World import *
 
-img = cv2.imread("circle2.jpg")
+def main():
+    size = (1000, 1000)
+    world = World(size[0], size[1])
+    world.addRndBoids(40)
+    world.BoidTrackbars()
+    world.WorldTrackbars()
 
-n = 30
+    world.simulate()
 
-new_img = img[(np.tile(np.arange(0, n) * (img.shape[0]/n), n)).astype(int), (np.repeat(np.arange(0, n) * (img.shape[1]/n), n)).astype(int)]
-new_img = new_img.reshape((n, n, 3))
-new_img = (new_img > 220) * 255
 
-cv2.imshow("", new_img.astype(np.uint8))
-cv2.waitKey(0)
+if __name__ == '__main__':
+    main()
